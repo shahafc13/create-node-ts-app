@@ -18,13 +18,19 @@
     "lint": "npm run lint-code",
     "lint:fix": "npm run lint-code -- --fix",
     "lint-code": "eslint .",
-    "prepare": "husky install && npm run build"
+    "prepare": "husky install && npm run build",
+    "release": "standard-version",
+    "release:patch": "standard-version --release-as patch",
+    "release:minor": "standard-version --release-as minor",
+    "release:major": "standard-version --release-as major",
+    "prepublishOnly": "npm run build"
   },
   "files": [
     "dist",
     "bin",
     "src/templates",
     "README.md",
+    "CHANGELOG.md",
     "LICENSE"
   ],
   "repository": {
@@ -65,6 +71,7 @@
     "lint-staged": "^15.5.0",
     "prettier": "3.5.3",
     "rollup": "^4.39.0",
+    "standard-version": "^9.5.0",
     "ts-jest": "^29.3.1",
     "ts-node": "^10.9.2",
     "tsx": "^4.19.3",
