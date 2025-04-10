@@ -1,0 +1,72 @@
+{
+  "name": "create-node-ts-app",
+  "version": "1.0.0",
+  "description": "A CLI tool to generate Node.js + TypeScript projects from predefined templates.",
+  "main": "dist/index.js",
+  "bin": {
+    "create-node-ts-app": "dist/index.js"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=18.x"
+  },
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "test": "jest",
+    "lint": "npm run lint-code",
+    "lint:fix": "npm run lint-code -- --fix",
+    "lint-code": "eslint .",
+    "prepare": "husky && npm run build"
+  },
+  "files": [
+    "dist",
+    "src/templates",
+    "README.md",
+    "LICENSE"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shahafc13/create-node-ts-app.git"
+  },
+  "keywords": [
+    "cli",
+    "node",
+    "nodejs",
+    "typescript",
+    "generator",
+    "boilerplate",
+    "scaffolding",
+    "fastify"
+  ],
+  "author": "Shahaf Cohen <shahafcon@gmail.com> (https://github.com/shahafc13)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/shahafc13/create-node-ts-app/issues"
+  },
+  "homepage": "https://github.com/shahafc13/create-node-ts-app#readme",
+  "devDependencies": {
+    "@eslint/js": "^9.24.0",
+    "@types/eslint__js": "9.14.0",
+    "@types/jest": "^29.5.14",
+    "@types/node": "^22.14.0",
+    "eslint": "9.24.0",
+    "eslint-config-prettier": "10.1.1",
+    "eslint-plugin-n": "^17.17.0",
+    "eslint-plugin-prettier": "5.2.6",
+    "globals": "^16.0.0",
+    "husky": "^9.1.7",
+    "jest": "^29.7.0",
+    "lint-staged": "^15.5.0",
+    "prettier": "3.5.3",
+    "ts-jest": "^29.3.1",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.29.1"
+  },
+  "dependencies": {
+    "@clack/prompts": "^0.10.1"
+  }
+}

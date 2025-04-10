@@ -1,0 +1,80 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Node Rules
+
+Here are the defined rules for this project:
+
+---
+
+### Rule: `no-console`
+
+*   **Description:** Avoid using console.log, console.warn, console.error, etc. Use a dedicated logger instead.
+*   **Prompt:** Refactor the code to remove `console.*` statements. If logging is necessary, suggest using a proper logging library or explain where logging should be added according to project conventions.
+
+---
+
+### Rule: `no-explicit-any`
+
+*   **Description:** Avoid using 'any' as a type. Specify a more precise type or use 'unknown'.
+*   **Prompt:** Replace usages of the `any` type with more specific types or `unknown` where appropriate. If a specific type is not easily determined, use `unknown` and guide towards type assertions or checks.
+
+---
+
+### Rule: `prefer-const`
+
+*   **Description:** Use 'const' for variables that are never reassigned.
+*   **Prompt:** Change `let` declarations to `const` for variables that are not reassigned after initialization.
+
+---
+
+### Rule: `explicit-function-return-type`
+
+*   **Description:** Ensure all functions and methods have explicit return types for clarity and safety.
+*   **Prompt:** Add explicit return types to all functions and methods. For void functions, use `: void`.
+
+---
+
+### Rule: `use-type-imports-exports`
+
+*   **Description:** Use 'import type' and 'export type' for type-only imports/exports.
+*   **Prompt:** Refactor imports and exports to use `import type` and `export type` for types, interfaces, and enums when they are used only in type annotations.
+
+---
+
+### Rule: `consistent-naming`
+
+*   **Description:** Follow consistent naming conventions (camelCase for variables/functions, PascalCase for classes/types/interfaces, kebab-case for files/folders).
+*   **Prompt:** Ensure all identifiers (variables, functions, classes, types, interfaces) and file/folder names adhere to standard TypeScript/Node.js naming conventions (camelCase for variables/functions, PascalCase for classes/types/interfaces, kebab-case for files/folders).
+
+---
+
+### Rule: `jsdoc-comments`
+
+*   **Description:** Add JSDoc comments to explain exported functions, classes, types, and complex logic.
+*   **Prompt:** Add comprehensive JSDoc comments to all exported members (functions, classes, types, constants) explaining their purpose, parameters, and return values. Also, add comments to explain complex internal logic blocks.
+
+---
+
+### Rule: `async-await-practices`
+
+*   **Description:** Ensure proper use of async/await, including error handling for promises.
+*   **Prompt:** Review async/await usage. Ensure all Promises returned by function calls are correctly handled (either `await`-ed, returned, or explicitly handled with `.catch()`). Add `try...catch` blocks around `await` expressions where errors are expected and need specific handling.
+
+---
+
+### Rule: `modular-design`
+
+*   **Description:** Promote modular design by keeping files focused on a single responsibility and avoiding overly large files or functions.
+*   **Prompt:** Analyze the code for opportunities to improve modularity. Suggest breaking down large functions or files into smaller, single-responsibility units. Ensure components have clear interfaces and minimal coupling.
+
+---
+
+### Rule: `strict-equality`
+
+*   **Description:** Prefer strict equality operators (=== and !==) over abstract equality operators (== and !=).
+*   **Prompt:** Replace all occurrences of abstract equality operators (`==`, `!=`) with strict equality operators (`===`, `!==`) to avoid potential type coercion issues.
+
+---
