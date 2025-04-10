@@ -19,7 +19,21 @@ This is a command-line interface (CLI) tool built with Node.js and TypeScript to
 
 ## Usage
 
-Currently, the primary way to run this CLI is from within its own development environment.
+### Using npx (Recommended)
+
+The simplest way to use this CLI is with npx:
+
+```bash
+# Run the latest version
+npx @shahafc13/create-node-ts-app
+
+# Or specify a version
+npx @shahafc13/create-node-ts-app@latest
+```
+
+This will start the interactive prompt and guide you through project creation without installing the package globally.
+
+### Running Locally During Development
 
 1.  **Clone the repository:**
     ```bash
@@ -35,7 +49,9 @@ Currently, the primary way to run this CLI is from within its own development en
     npm run dev
     ```
 
-This will start the interactive prompt:
+### Interactive Prompts
+
+The CLI will guide you through these options:
 
 - **Project Name:** Enter the desired name for your new project (e.g., `my-api`).
 - **Template Selection:** Choose the base template (e.g., `Node.js Base`).
