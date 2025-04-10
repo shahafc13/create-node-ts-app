@@ -8,7 +8,7 @@ on:
 
 jobs:
   create-tag:
-    if: github.event.pull_request.merged == true && contains(github.event.pull_request.labels.*.name, 'release')
+    if: github.event.pull_request.merged == true && (contains(github.event.pull_request.labels.*.name, 'release') || startsWith(github.event.pull_request.title, 'Release'))
     runs-on: ubuntu-latest
     permissions:
       contents: write
