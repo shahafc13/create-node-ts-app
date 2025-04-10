@@ -8,7 +8,14 @@ import tseslint from 'typescript-eslint';
 
 export default tseslint.config(
   {
-    ignores: ['dist', 'bin', 'build', 'node_modules', 'src/templates'],
+    ignores: [
+      'dist',
+      'bin',
+      'build',
+      'node_modules',
+      'src/templates',
+      '.rollup.cache',
+    ],
   },
   js.configs.recommended,
   eslint.configs.recommended,
