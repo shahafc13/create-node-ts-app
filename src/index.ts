@@ -26,16 +26,20 @@ async function loadTemplateFile(
   templateDir: string,
   relativePath: string
 ): Promise<string> {
-  const filePath = path.resolve(__dirname, templateDir, relativePath);
+  // Special case for .gitignore which is renamed to avoid npm ignoring it
+  const actualPath =
+    relativePath === '.gitignore' ? 'gitignore.template' : relativePath;
+
+  const filePath = path.resolve(__dirname, templateDir, actualPath);
   try {
     return await fs.readFile(filePath, 'utf-8');
   } catch (error: unknown) {
     console.error(
-      `Error reading template file ${path.join(templateDir, relativePath)}:`,
+      `Error reading template file ${path.join(templateDir, actualPath)}:`,
       (error as Error).message
     );
     throw new Error(
-      `Template file ${path.join(templateDir, relativePath)} not found or unreadable.`
+      `Template file ${path.join(templateDir, actualPath)} not found or unreadable.`
     );
   }
 }
