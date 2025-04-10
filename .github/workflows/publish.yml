@@ -71,7 +71,6 @@ jobs:
 
       # Only publish if this is triggered by a tag push
       - name: Publish package
-        if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')
         run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -123,24 +122,3 @@ jobs:
 
           # Add labels separately after PR is created
           gh pr edit $PR_NUMBER --add-label "automated pr,release"
-
-      # Auto-approve the PR
-      - name: Auto-approve PR
-        if: github.event_name == 'workflow_dispatch' && steps.create-pr.outputs.pull-request-number != ''
-        run: |
-          # Approve the PR
-          gh pr review ${{ steps.create-pr.outputs.pull-request-number }} --approve
-
-          echo "✅ PR #${{ steps.create-pr.outputs.pull-request-number }} has been auto-approved"
-
-      # Auto-merge the PR
-      - name: Auto-merge PR
-        if: github.event_name == 'workflow_dispatch' && steps.create-pr.outputs.pull-request-number != ''
-        run: |
-          # Wait a moment for approval to register
-          sleep 5
-
-          # Enable auto-merge
-          gh pr merge ${{ steps.create-pr.outputs.pull-request-number }} --auto --merge
-
-          echo "🔄 PR #${{ steps.create-pr.outputs.pull-request-number }} has been set to auto-merge"
