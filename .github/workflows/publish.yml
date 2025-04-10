@@ -52,12 +52,6 @@ jobs:
       - name: Run tests
         run: npm test
 
-      - name: Create bin directory and wrapper script
-        run: |
-          mkdir -p bin
-          echo '#!/usr/bin/env node\n\nimport "../dist/index.js";' > bin/create-node-ts-app.mjs
-          chmod +x bin/create-node-ts-app.mjs
-
       # Version bump on manual trigger and create branch
       - name: Bump version (manual trigger)
         if: github.event_name == 'workflow_dispatch'
@@ -114,9 +108,6 @@ jobs:
           PR_NUMBER=$(echo $PR_URL | grep -o '[0-9]\+$')
           echo "pull-request-number=$PR_NUMBER" >> $GITHUB_OUTPUT
           echo "Created PR #$PR_NUMBER: $PR_URL"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       # Auto-approve the PR
       - name: Auto-approve PR
@@ -126,9 +117,6 @@ jobs:
           gh pr review ${{ steps.create-pr.outputs.pull-request-number }} --approve
 
           echo "✅ PR #${{ steps.create-pr.outputs.pull-request-number }} has been auto-approved"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       # Auto-merge the PR
       - name: Auto-merge PR
@@ -141,6 +129,3 @@ jobs:
           gh pr merge ${{ steps.create-pr.outputs.pull-request-number }} --auto --merge
 
           echo "🔄 PR #${{ steps.create-pr.outputs.pull-request-number }} has been set to auto-merge"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
