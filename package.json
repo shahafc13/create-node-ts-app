@@ -12,13 +12,13 @@
   },
   "scripts": {
     "dev": "tsx watch src/index.ts",
-    "build": "tsc",
+    "build": "rollup -c rollup.config.mjs",
     "start": "node dist/index.js",
     "test": "jest",
     "lint": "npm run lint-code",
     "lint:fix": "npm run lint-code -- --fix",
     "lint-code": "eslint .",
-    "prepare": "husky && npm run build"
+    "prepare": "husky install && npm run build"
   },
   "files": [
     "dist",
@@ -49,6 +49,9 @@
   "homepage": "https://github.com/shahafc13/create-node-ts-app#readme",
   "devDependencies": {
     "@eslint/js": "^9.24.0",
+    "@rollup/plugin-commonjs": "^28.0.3",
+    "@rollup/plugin-node-resolve": "^16.0.1",
+    "@rollup/plugin-typescript": "^12.1.2",
     "@types/eslint__js": "9.14.0",
     "@types/jest": "^29.5.14",
     "@types/node": "^22.14.0",
@@ -61,6 +64,7 @@
     "jest": "^29.7.0",
     "lint-staged": "^15.5.0",
     "prettier": "3.5.3",
+    "rollup": "^4.39.0",
     "ts-jest": "^29.3.1",
     "ts-node": "^10.9.2",
     "tsx": "^4.19.3",
