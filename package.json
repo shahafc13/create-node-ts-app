@@ -4,7 +4,7 @@
   "description": "A CLI tool to generate Node.js + TypeScript projects from predefined templates.",
   "main": "dist/index.js",
   "bin": {
-    "create-node-ts-app": "bin/create-node-ts-app.mjs"
+    "create-node-ts-app": "bin/create-node-ts-app.js"
   },
   "type": "module",
   "engines": {
