@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.9](https://github.com/shahafc13/create-node-ts-app/compare/v1.0.8...v1.0.9) (2025-04-10)
+
+
+### Documentation
+
+* Revise README for improved clarity and feature highlights ([583c565](https://github.com/shahafc13/create-node-ts-app/commit/583c565d3a674161a11c66e50949ac6579128d3a))
+
 ### [1.0.8](https://github.com/shahafc13/create-node-ts-app/compare/v1.0.7...v1.0.8) (2025-04-10)
 
 
