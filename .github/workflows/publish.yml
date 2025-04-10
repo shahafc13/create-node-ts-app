@@ -66,6 +66,10 @@ jobs:
           BRANCH_NAME="release/v${{ github.event.inputs.version }}-$(date +%Y%m%d%H%M%S)"
           git checkout -b $BRANCH_NAME
           npm run release:${{ github.event.inputs.version }}
+
+          # Push the branch to origin
+          git push -u origin $BRANCH_NAME
+
           echo "RELEASE_BRANCH=$BRANCH_NAME" >> $GITHUB_ENV
 
       - name: Build package
@@ -81,38 +85,44 @@ jobs:
       # Create PR for version bump (only on manual workflow)
       - name: Create Pull Request
         if: github.event_name == 'workflow_dispatch'
-        uses: peter-evans/create-pull-request@v5
         id: create-pr
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: 'chore(release): bump version to ${{ github.event.inputs.version }}'
-          title: 'Release: New ${{ github.event.inputs.version }} version'
-          body: |
-            This PR was automatically created by the GitHub Action workflow.
+        run: |
+          # Install GitHub CLI if not already installed
+          command -v gh >/dev/null 2>&1 || {
+            curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg
+            echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
+            sudo apt update
+            sudo apt install gh
+          }
 
+          # Setup GitHub CLI
+          gh auth login --with-token <<< "${{ secrets.GITHUB_TOKEN }}"
+
+          # Create the PR
+          PR_URL=$(gh pr create --base main --head ${{ env.RELEASE_BRANCH }} \
+            --title "Release: New ${{ github.event.inputs.version }} version" \
+            --body "This PR was automatically created by the GitHub Action workflow.
+            
             Changes:
             - Bumps version to next ${{ github.event.inputs.version }} release
             - Updates CHANGELOG.md with recent changes
+            
+            Once merged, a new tag will be created, triggering the publish workflow." \
+            --label "automated pr,release")
 
-            Once merged, a new tag will be created, triggering the publish workflow.
-          branch: ${{ env.RELEASE_BRANCH }}
-          base: main
-          labels: |
-            automated pr
-            release
+          # Extract PR number from URL
+          PR_NUMBER=$(echo $PR_URL | grep -o '[0-9]\+$')
+          echo "pull-request-number=$PR_NUMBER" >> $GITHUB_OUTPUT
+          echo "Created PR #$PR_NUMBER: $PR_URL"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       # Auto-approve the PR
       - name: Auto-approve PR
         if: github.event_name == 'workflow_dispatch' && steps.create-pr.outputs.pull-request-number != ''
         run: |
-          # Install GitHub CLI
-          curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg
-          echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
-          sudo apt update
-          sudo apt install gh
-
           # Approve the PR
-          gh auth login --with-token <<< "${{ secrets.GITHUB_TOKEN }}"
           gh pr review ${{ steps.create-pr.outputs.pull-request-number }} --approve
 
           echo "✅ PR #${{ steps.create-pr.outputs.pull-request-number }} has been auto-approved"
