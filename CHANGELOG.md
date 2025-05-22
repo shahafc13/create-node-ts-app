@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.10](https://github.com/shahafc13/create-node-ts-app/compare/v1.0.9...v1.0.10) (2025-05-22)
+
+
+### Bug Fixes
+
+* Update Jest and TypeScript configurations ([d72935e](https://github.com/shahafc13/create-node-ts-app/commit/d72935e2a5e188cb1a136c5901271108d5aaa6d3))
+
 ### [1.0.9](https://github.com/shahafc13/create-node-ts-app/compare/v1.0.8...v1.0.9) (2025-04-10)
 
 
