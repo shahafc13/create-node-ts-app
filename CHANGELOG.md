@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.11](https://github.com/shahafc13/create-node-ts-app/compare/v1.0.10...v1.0.11) (2025-06-04)
+
+
+### Features
+
+* Add Dockerfile template and update Node.js version requirement ([87f9b65](https://github.com/shahafc13/create-node-ts-app/commit/87f9b65c8e29b69609bc88701bc2cff91650a417))
+
 ### [1.0.10](https://github.com/shahafc13/create-node-ts-app/compare/v1.0.9...v1.0.10) (2025-05-22)
 
 
