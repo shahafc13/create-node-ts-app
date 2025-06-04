@@ -254,6 +254,18 @@ async function createConfigFiles(
     )
   );
 
+  const dockerfilePath = path.resolve(__dirname, templateDir, 'Dockerfile');
+  try {
+    const dockerfileContent = await fs.readFile(dockerfilePath, 'utf-8');
+    promises.push(
+      fs.writeFile(path.join(projectPath, 'Dockerfile'), dockerfileContent)
+    );
+  } catch {
+    console.warn(
+      `Warning: Could not load or write Dockerfile from ${templateDir}. Skipping.`
+    );
+  }
+
   try {
     await Promise.all(promises);
     s.stop('Configuration files created.');
