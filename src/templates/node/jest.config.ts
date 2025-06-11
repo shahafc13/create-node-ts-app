@@ -171,9 +171,18 @@ const config: Config = {
 
   // A map from regular expressions to paths to transformers
   transform: {
-    '^.+.tsx?$': ['ts-jest', { tsconfig: 'tsconfig.json' }],
+    '^.+\\.tsx?$': [
+      'ts-jest',
+      {
+        useESM: true,
+        tsconfig: {
+          module: 'esnext',
+        },
+      },
+    ],
   },
   moduleNameMapper: {
+    '^@/(.*)\\.js$': '<rootDir>/src/$1.ts',
     '^@/(.*)$': '<rootDir>/src/$1',
     '^(\\.{1,2}/.*)\\.js$': '$1',
   },
