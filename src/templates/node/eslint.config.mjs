@@ -8,7 +8,14 @@ import tseslint from 'typescript-eslint';
 
 export default tseslint.config(
   {
-    ignores: ['dist', 'bin', 'build', 'node_modules'],
+    ignores: [
+      'dist',
+      'bin',
+      'build',
+      'node_modules',
+      'eslint.config.mjs',
+      'jest.config.ts',
+    ],
   },
   js.configs.recommended,
   eslint.configs.recommended,
