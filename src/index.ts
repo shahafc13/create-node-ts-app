@@ -245,15 +245,6 @@ async function createConfigFiles(
     );
   }
 
-  // Basic src/index.ts
-  const BASE_INDEX_TS_CONTENT = `console.log('Hello, World!');\n`;
-  promises.push(
-    fs.writeFile(
-      path.join(projectPath, 'src', 'index.ts'),
-      BASE_INDEX_TS_CONTENT
-    )
-  );
-
   const dockerfilePath = path.resolve(__dirname, templateDir, 'Dockerfile');
   try {
     const dockerfileContent = await fs.readFile(dockerfilePath, 'utf-8');
