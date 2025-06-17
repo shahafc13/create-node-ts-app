@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0](https://github.com/shahafc13/create-node-ts-app/compare/v1.0.14...v1.1.0) (2025-06-17)
+
+
+### Bug Fixes
+
+* Enhance createConfigFiles to include additional source files ([8271256](https://github.com/shahafc13/create-node-ts-app/commit/82712567e1c00386a24ceff2d59211fa4cb3c4f0))
+
 ### [1.0.14](https://github.com/shahafc13/create-node-ts-app/compare/v1.0.13...v1.0.14) (2025-06-17)
 
 
