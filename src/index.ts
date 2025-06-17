@@ -257,6 +257,14 @@ async function createConfigFiles(
     );
   }
 
+  const srcDir = path.resolve(__dirname, templateDir, 'src');
+  const srcFiles = await fs.readdir(srcDir);
+  for (const file of srcFiles) {
+    const filePath = path.join(srcDir, file);
+    const fileContent = await fs.readFile(filePath, 'utf-8');
+    promises.push(fs.writeFile(path.join(projectPath, file), fileContent));
+  }
+
   try {
     await Promise.all(promises);
     s.stop('Configuration files created.');
