@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.14](https://github.com/shahafc13/create-node-ts-app/compare/v1.0.13...v1.0.14) (2025-06-17)
+
+
+### Features
+
+* Create env.ts file using zod parser ([bde00a8](https://github.com/shahafc13/create-node-ts-app/commit/bde00a8f4ba9bacd77242f0a7eaa96ab4f940ddf))
+
 ### [1.0.13](https://github.com/shahafc13/create-node-ts-app/compare/v1.0.12...v1.0.13) (2025-06-11)
 
 ### [1.0.12](https://github.com/shahafc13/create-node-ts-app/compare/v1.0.11...v1.0.12) (2025-06-11)
