@@ -262,7 +262,9 @@ async function createConfigFiles(
   for (const file of srcFiles) {
     const filePath = path.join(srcDir, file);
     const fileContent = await fs.readFile(filePath, 'utf-8');
-    promises.push(fs.writeFile(path.join(projectPath, file), fileContent));
+    promises.push(
+      fs.writeFile(path.join(projectPath, 'src', file), fileContent)
+    );
   }
 
   try {
